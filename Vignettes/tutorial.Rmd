@@ -1,0 +1,58 @@
+---
+title: "Reproduce Sankey plot in ggplot2"
+author:
+- name: Hao Wang
+  email: helenewang98@gmail.com
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Sankey}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>"
+)
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(Sankey)
+```
+
+Here we present the vignettes to recreate the sankey plot in ggplot.
+
+
+
+The example dataset, `data_example` is a data frame containing information on five key risk factors—Hypertension, Diabetes, Smoking, Hypercholesterolemia, and Obesity—across five years (1990, 1995, 2000, 2005, 2010), with the corresponding values indicating risk factor’s contribution to stroke incidence over time.
+
+```{r}
+data("data_example", package = "Sankey")
+
+head(data_example)
+```
+
+
+To re-produce the Sankey diagram, we first sort the data to ensure the correct order and use `geom_rect` in `ggplot` to plot the stack bar for each year. Following that, we employ geom_polygon to draw the polygons that represent the connections between risk factors across the years.
+ 
+```{r}
+
+test_plot = Sankey_CSMC(data_example, title = "Example")
+
+test_plot
+```
+
+
+This package represent a toy example of creating function of drawing Sankey diagram in ggplot. Due to timing concerns, here we delivered the results that could best match the diagram created using excel. To further improve this package, we could:
+
+1) Polish the plot to better match the original Sankey diagram.
+
+2) Modify the function argument to incorporate more flexible variable naming, accommodating datasets with column names that are not restricted to Year, RiskFactor, etc.
+
+3) Add additional arguments that enable users to customize the plots, such as adjusting text size, color, and other stylistic elements.
