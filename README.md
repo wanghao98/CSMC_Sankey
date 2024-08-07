@@ -4,5 +4,5 @@ To install the package, git clone the github, then under the github folder, run 
 
 ```
 library(devtools)
-install_github("Displayr/flipPlots")
+install_github("Sankey")
 ```
